@@ -1,108 +1,74 @@
-//Pizzeria med 3 pizzor och 3 storlekar, large = 90kr, medium = 60kr, small = 30kr
-//Kebabpizza - tomat, kebab, sås
-//vesuvio - tomat, skinka, ost
-//margarita - tomat, ost
-//toppings - feta-ost, mozzarella, Oliver
+//PIZZA PROGRAM
 
-/*todo 
-funktion som sammanställer beställning
-funktion som räknar ut totala kostnaden
-få beställning att upprepas tills användaren går vidare till nästa steg
-
-
+/*                                                  Arrays eller objekt
+                                                    att göra:
+                                                    behållare för pizzor, toppings och storlek.✅
+                                                    meny för att beställa och lägga ihop
+                                                    sätt att räkna ihop beställningen och logga
 
 */
-let order = [];
-let orderPrice = 0;
+/* 
+ _______  __    __  .__   __.   ______ .___________.__    ______   .__   __.      _______.
+|   ____||  |  |  | |  \ |  |  /      ||           |  |  /  __  \  |  \ |  |     /       |
+|  |__   |  |  |  | |   \|  | |  ,----'`---|  |----|  | |  |  |  | |   \|  |    |   (----`
+|   __|  |  |  |  | |  . `  | |  |         |  |    |  | |  |  |  | |  . `  |     \   \    
+|  |     |  `--'  | |  |\   | |  `----.    |  |    |  | |  `--'  | |  |\   | .----)   |   
+|__|      \______/  |__| \__|  \______|    |__|    |__|  \______/  |__| \__| |_______/    
+                                                                                      */
 
-const toppings = {
-  feta: ["Feta-ost", 12],
-  mozarella: ["Mozarella", 15],
-  Oliver: ["Oliver", 5],
+let customerOrder = () => {
+  userinput = prompt(
+    `Vi har ${pizzas} och våra priser är: \n liten: ${pizzaPrice.small}\n medium: ${pizzaPrice.medium}\n stor: ${pizzaPrice.large}
+  skriv din beställning nedanför ↓
+                                      
+  `
+  );
+  return userinput;
 };
-
-let pizzaprice = [(Small = 60), (medium = 90), (Large = 120)];
-let pizzaSize = [
-  (Small += "kr small"),
-  (medium += "kr medium"),
-  (Large += "kr Large"),
-];
-for (const element of pizzaSize) {
-  console.log(element);
-}
-
-const pizza = {
-  kebab: "KebabPizza",
-  Vesuvio: "Vesuvio",
-  margarita: "Margarita",
-};
-const pizzaContains = {
-  Kebab: ["tomat", "kebab", "Sås"],
-  Vesuvio: ["Skinka", "tomat", "ost"],
-  margarita: ["tomat", "ost"],
-};
-
-
-const toppingsMenu = () => {
-  let wantsTopping = confirm("Vill du ha topping?");
-  if (wantsTopping) {
-    userInput = prompt(`Vilken topping vill du ha?`);
-    switch (userInput) {
-      case "oliver":
-        console.log("Du lade till oliver på din beställning");
-        order.push(toppings.Oliver);
-        return;
-      case "mozarella":
-        console.log("Du lade till mozarella på din beställning");
-        order.push(toppings.mozarella);
-        return;
-      case "Fetaost":
-        console.log("Du lade till fetaost på din beställning");
-        order.push(toppings.feta);
-        return;
-
-      default:
-        break;
+const order = [];
+const keyWords = "Liten, medium, Stor, Kebabpizza, vesuvio, margarita";
+let findOrder = (userinput, keyWords) => {
+  for (const key in keyWords) {
+    if (userinput.includes(key)) {
+      order.push(key);
     }
   }
+  return order;
 };
 
-const meny = () => {
-  let villbestalla = confirm("Vill du beställa en pizza?");
-  userInput = prompt(
-    `Vilken pizza vill du ha?vi har\n ${[
-      [pizza.kebab, pizza.Vesuvio, pizza.margarita],
-    ]}`
-  );
+/*
+let calculateOrder = (userinput, order) => {
+  order = [];
+kollar på denna senare
 
-  order.push(
-    prompt(`Vilken storlek vill du ha på pizzan? \n Vi har ${pizzaSize}`)
-  );
-  console.log("Ny beställning");
-  switch (userInput) {
-    case "kebabpizza":
-      console.log("Du valde en KebabPizza");
-      order.push(pizza.kebab);
-      toppingsMenu();
-      return orderPrice + ;
-
-    case "vesuvio":
-      toppingsMenu();
-      order.push(pizza.Vesuvio);
-      console.log("Du valde Vesuvio");
-      return;
-
-    case "margarita":
-      console.log("Du valde en Margarita");
-      order.push(pizza.margarita);
-      toppingsMenu();
-      return;
-
-    default:
-      console.log("ERROR");
-      break;
-  }
-  villbestalla = confirm("Vill du beställa mer?");
+  return order;
 };
-meny();
-console.log(`du beställde ${order} som kostar ${orderPrice}`);
+*/
+
+let pizzas = ["Kebabpizza", "Vesuvio", "Margarita"];
+
+let pizzaPrice = {
+  small: 60,
+  medium: 90,
+  large: 120,
+};
+
+let toppings = {
+  oliver: 5,
+  pepperoni: 20,
+  mozarella: 15,
+};
+
+let customer = confirm(
+  "Hej och välkommen till placeholder Pizzeria, Vill du beställa?"
+);
+if (customer) {
+  wantsOrder = prompt(
+    "Hej det går bra att beställa. Skriv meny för att se menyn"
+  );
+}
+if (wantsOrder == "meny") {
+  customerOrder();
+  findOrder(userinput);
+  //calculateOrder(); todo: gör funktionen
+}
